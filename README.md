@@ -4,25 +4,25 @@
 
 1. Las evaluaciones serán efectuadas por medio de actividades prácticas en clases y tareas. Se calculará **la nota del curso NC** como:
 
- **NC = 2/3 * T + 1/3 * AC**
+    **NC = 2/3 * T + 1/3 * AC**
 
- Donde **T** es el promedio ponderado de las tareas y **AC** es el promedio de las actividades sumativas en clases.
+    Donde **T** es el promedio ponderado de las tareas y **AC** es el promedio de las actividades sumativas en clases.
 
- El promedio ponderado de las tareas se calcula de la siguiente manera:
+    El promedio ponderado de las tareas se calcula de la siguiente manera:
 
- **T = 1xT<sub>0</sub> + 2×T<sub>1</sub> + 3×T<sub>3</sub> + 3×T<sub>4</sub> / 9**
+    **T = 1xT<sub>0</sub> + 2×T<sub>1</sub> + 3×T<sub>3</sub> + 3×T<sub>4</sub> / 9**
 
- El promedio de las actividades corresponderá a las 4 mejores notas entre las actividades sumativas (son 4) y el promedio de las actividades formativas, que cuenta como una actividad sumativa más:
+    El promedio de las actividades corresponderá a las 4 mejores notas entre las actividades sumativas (son 4) y el promedio de las actividades formativas, que cuenta como una actividad sumativa más:
 
- **AC = ((ACS<sub>1</sub> + ACS<sub>2</sub> + ACS<sub>3</sub> + ACS<sub>4</sub> + ACF) - min(ACS, ACF)) / 3**
+    **AC = ((ACS<sub>1</sub> + ACS<sub>2</sub> + ACS<sub>3</sub> + ACS<sub>4</sub> + ACF) - min(ACS, ACF)) / 3**
 
- El promedio de las actividades formativas tomará en cuenta una cantidad menor o igual a 7 participaciones de estas.
+    El promedio de las actividades formativas tomará en cuenta una cantidad menor o igual a 7 participaciones de estas.
 
 2. Adicionalmente, para aprobar el curso el alumno debe cumplir con:
 
- - **NC** debe ser mayor o igual a 3.950
- - **AC** debe ser mayor o igual a 3.950
- - **T** debe ser mayor o igual a 3.950
+    - **NC** debe ser mayor o igual a 3.950
+    - **AC** debe ser mayor o igual a 3.950
+    - **T** debe ser mayor o igual a 3.950
 
 3. Si el alumno cumple con las condiciones anteriores, entonces **NF = NC**. En caso contrario, **NF = min(3,9; NC)**
 
@@ -38,7 +38,7 @@ Para recorregir alguna evaluación, se publicará oportunamente un form en el qu
 
 ## Entregas agrasadas
 
-Deben contestar un form que se habilitará en el debido momento. Se recomienda revisar el documento de [entregas atrasadas](#) para más detalles.
+Deben contestar un form que se habilitará en el debido momento. Se recomienda revisar el documento de [entregas atrasadas](https://github.com/IIC2233/syllabus/blob/master/ArchivosImportantes/Terminos%20y%20condiciones%20para%20entregas%20atrasadas.md) para más detalles.
 
 **No se aceptarán recorrecciones del tipo:** "Creo que merezco más nota" sin que haya alguna justificación de por medio.
 
