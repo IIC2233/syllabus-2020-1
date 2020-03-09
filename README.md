@@ -10,13 +10,20 @@
 
     El promedio ponderado de las tareas se calcula de la siguiente manera:
 
-    **T = 1xT<sub>0</sub> + 2×T<sub>1</sub> + 3×T<sub>3</sub> + 3×T<sub>4</sub> / 9**
+    **T = ( 1xT<sub>0</sub> + 2×T<sub>1</sub> + 3×T<sub>3</sub> + 3×T<sub>4</sub> ) / 9**
 
-    El promedio de las actividades corresponderá a las 4 mejores notas entre las actividades sumativas (son 4) y el promedio de las actividades formativas, que cuenta como una actividad sumativa más:
+    El promedio de las actividades corresponderá a las 4 mejores notas entre actividades sumativas (son 4) y la nota de actividades formativas, que cuenta como una actividad sumativa más:
 
     **AC = ((ACS<sub>1</sub> + ACS<sub>2</sub> + ACS<sub>3</sub> + ACS<sub>4</sub> + ACF) - min(ACS, ACF)) / 4**
 
-    El promedio de las actividades formativas tomará en cuenta una cantidad menor o igual a 7 participaciones de estas.
+    La nota de actividades formativas **AF** toma en consideración la participación del estudiante como meta.
+    Son siete instancias de actividades formativas, donde el trabajo del estudiante será revisado superficialmente y recibirá un puntaje de cumplimiento acorde:
+    o (no logrado), 0.5 (medianamente logrado) y 1 (logrado).
+    Se considerará la suma de cumplimientos ($\Sigma$) de las siete actividades y se necesitará un total de **5** para obtener la nota máxima en **AF**.
+
+    Es decir, ek cálculo de **AF** es:
+
+    **AF = 6 x min($\Sigma$; 5) / 5 + 1**
 
 2. Adicionalmente, para aprobar el curso el alumno debe cumplir con:
 
