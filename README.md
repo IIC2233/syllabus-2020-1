@@ -14,7 +14,7 @@
 
     El promedio de las actividades corresponderá a las 4 mejores notas entre las actividades sumativas (son 4) y el promedio de las actividades formativas, que cuenta como una actividad sumativa más:
 
-    **AC = ((ACS<sub>1</sub> + ACS<sub>2</sub> + ACS<sub>3</sub> + ACS<sub>4</sub> + ACF) - min(ACS, ACF)) / 3**
+    **AC = ((ACS<sub>1</sub> + ACS<sub>2</sub> + ACS<sub>3</sub> + ACS<sub>4</sub> + ACF) - min(ACS, ACF)) / 4**
 
     El promedio de las actividades formativas tomará en cuenta una cantidad menor o igual a 7 participaciones de estas.
 
