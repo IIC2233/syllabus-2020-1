@@ -18,7 +18,7 @@
 
     La nota de actividades formativas **AF** toma en consideración la participación del estudiante como meta.
     Son siete instancias de actividades formativas, donde el trabajo del estudiante será revisado superficialmente y recibirá un puntaje de cumplimiento acorde:
-    o (no logrado), 0.5 (medianamente logrado) y 1 (logrado).
+    0 (no logrado), 0.5 (medianamente logrado) y 1 (logrado).
     Se considerará la suma de cumplimientos (**Z**) de las siete actividades y se necesitará un total de **5** para obtener la nota máxima en **AF**. Es decir, el cálculo de **AF** es:
 
     **AF = 6 x min(*Z*; 5) / 5 + 1**, donde **Z** es la suma de cumplimientos en actividades formativas.
