@@ -43,7 +43,7 @@ Para recorregir alguna evaluación, se publicará oportunamente un form en el qu
 
 **No se aceptarán recorrecciones del tipo:** "Creo que merezco más nota" sin que haya alguna justificación de por medio.
 
-## Entregas agrasadas
+## Entregas atrasadas
 
 Deben contestar un form que se habilitará en el debido momento. Se recomienda revisar el documento de [entregas atrasadas](https://github.com/IIC2233/syllabus/blob/master/ArchivosImportantes/Terminos%20y%20condiciones%20para%20entregas%20atrasadas.md) para más detalles.
 
