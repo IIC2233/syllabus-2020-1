@@ -5,8 +5,8 @@ A pesar de que se pueden acumular más de 10 décimas entre todos los descuentos
 #### <center>`mín(total_descuentos_aplicados, 10) + descuento_por_entrega_atrasada + descuento_por_usar_algo_prohibido`</center>
 
 Donde:
-* `descuento_por_entrega_atrasada` es el descuento  por entregar despues del plazo indicado en el enunciado.
 * `total_descuentos_aplicados` es la suma entre los descuento de PEP8, Readme, Modularización, Formato de entrega, Uso de `.gitignore` y descuentos adicionales. (Los demás descuentos que no son por atraso, ni uso de elementos prohibidos)
+* `descuento_por_entrega_atrasada` es el descuento por entregar despues del plazo indicado en el enunciado.
 * `descuento_por_usar_algo_prohibido` es el descuento asociado a utilizar alguna librería o `Built-in` no autorizado. Tal como dice en cada enunciado de tarea, no se permite ninguna librería a no ser que nosotros especifiquemos lo contrario. El descuento puede ir desde 1 décima a 5 décimas dependiendo del tipo de librería prohibida utilizada.
 
 ## PEP8 (hasta 4 décimas) :pencil2: 
@@ -57,6 +57,13 @@ Este descuento sólo se aplica si en el enunciado de la tarea se especifica que 
 - **2 décimas** si sube igual los archivos a ignorar a pesar de tener el archivo `.gitignore` (no cumple con el objetivo del `.gitignore` o no lo utiliza correctamente)
 - **Importante:** el `.gitignore` debe estar dentro de la carpeta (T01/, T02/ o T03/), no se aceptará que lo pongan en otra parte aunque funcione.
 
+## Cambio de líneas (hasta 5 décimas) :arrows_counterclockwise:
+Por tarea, se permite cambiar **hasta** 20 líneas de código. Por cada línea del que cambien de su código se les aplicará un descuento según la siguiente fórmula:
+
+### <center>`techo(c_lineas/4)`</center>
+
+Donde `c_lineas` es la cantidad de líneas cambiadas.
+
 ## Adicionales (hasta 5 décimas) :information_source:
 Dependiendo de cómo esté hecha la tarea, el ayudante se puede topar con múltiples inconvenientes que impidan la corrección de la tarea o le dificulten en gran medida la revisión de esta. Es por esto que puede aplicar el descuento que considere apropiado para la situación en la que se encuentre de ser justificado.
 
@@ -76,6 +83,6 @@ Finalmente, la cantidad de décimas restadas queda a criterio del ayudante.
 
 Si se entrega la tarea atrasada se tendrá un descuento **inicial** de 5 décimas hasta un descuento de 20 décimas a las 24hrs de atraso del plazo establecido de manera lineal, con la fórmula:
 
-### <center>5+15t/24</center>
+### <center>5 + 15t/24</center>
 
 Donde `t` está en horas (es una función **continua** y no discreta) y no se permiten entregas pasadas las 24 hrs de la hora inicial de entrega.
