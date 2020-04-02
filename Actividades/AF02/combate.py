@@ -32,7 +32,7 @@ def jugar(equipo_alumnos, equipo_ayudantes, tipo_de_juego):
 
     # Se vuelven a formar las tuplas, ahora con el puntaje actualizado.
     equipo_alumnos = (alumnos, puntaje_alumnos)
-    equipo_ayudantes = (alumnos, puntaje_ayudantes)
+    equipo_ayudantes = (ayudantes, puntaje_ayudantes)
     
     return equipo_alumnos, equipo_ayudantes
 
