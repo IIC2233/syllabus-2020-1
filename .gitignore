@@ -26,6 +26,15 @@ __pycache__/
 *$py.class
 
 # --------------------------------------------
+# Jupyter notebooks
+# --------------------------------------------
+# Cuando se ejecuta un jupyter notebook y guardamos cambios manualmente, jupyter se encarga de
+# almacenar los cambios en esta carpeta, para poder contener múltiples versiones. Sin embargo, no
+# es necesario hacer seguimiento de esto a través de git, ya que hacemos seguimiento al *.ipynb
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# --------------------------------------------
 # Interfaces gráficas
 # --------------------------------------------
 # Al usar una interfaz de JetBrains (PyCharm) se crea esta carpeta con archivos internos
