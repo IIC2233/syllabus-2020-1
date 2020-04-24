@@ -17,11 +17,11 @@
     **AC = ((ACS<sub>1</sub> + ACS<sub>2</sub> + ACS<sub>3</sub> + ACS<sub>4</sub> + ACF) - mínimo) / 4**, dónde **mínimo** es la peor nota entre las cinco consideradas (ACS<sub>1</sub>, ACS<sub>2</sub>, ACS<sub>3</sub>, ACS<sub>4</sub> y ACF).
 
     La nota de actividades formativas **AF** toma en consideración la participación del estudiante como meta.
-    Son siete instancias de actividades formativas, donde el trabajo del estudiante será revisado superficialmente y recibirá un puntaje de cumplimiento acorde:
+    Son seis instancias de actividades formativas, donde el trabajo del estudiante será revisado superficialmente y recibirá un puntaje de cumplimiento acorde:
     0 (no logrado), 0.5 (medianamente logrado) y 1 (logrado).
-    Se considerará la suma de cumplimientos (**Z**) de las siete actividades y se necesitará un total de **5** para obtener la nota máxima en **AF**. Es decir, el cálculo de **AF** es:
+    Se considerará la suma de cumplimientos (**Z**) de las seis actividades y se necesitará un total de **4** para obtener la nota máxima en **AF**. Es decir, el cálculo de **AF** es:
 
-    **AF = 6 x min(*Z*; 5) / 5 + 1**, donde **Z** es la suma de cumplimientos en actividades formativas.
+    **AF = 6 x min(*Z*; 4) / 4 + 1**, donde **Z** es la suma de cumplimientos en actividades formativas.
 
 2. Adicionalmente, para aprobar el curso el alumno debe cumplir con:
 
