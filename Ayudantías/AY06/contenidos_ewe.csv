@@ -1,0 +1,9 @@
+Crear threads,5
+time.sleep(),2
+Inicializar threads,10
+Daemons threads,7
+Timers,12
+join(),3
+Lock,1
+Señales entre threads,19
+DeadLocks,4
