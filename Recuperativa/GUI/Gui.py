@@ -20,6 +20,7 @@ class MiVentana(QMainWindow):
     signal_agregar_curso = pyqtSignal(dict)
     signal_eliminar_curso = pyqtSignal(dict)
     signal_buscar_cursos_compatibles = pyqtSignal()
+    signal_cambio_semestre = pyqtSignal(str)
 
     def __init__(self):
         super(MiVentana, self).__init__()
@@ -28,12 +29,16 @@ class MiVentana(QMainWindow):
         # Conexión de botones
         self.searchCoursesButton.clicked.connect(self.manejar_aplicar_filtro)
         self.resetFormButton.clicked.connect(self.signal_eliminar_fiiltro.emit)
+        self.resetFormButton.clicked.connect(self.limpiar_filtro)
         self.myCoursesListWidget.itemClicked.connect(
             self.eliminar_curso_seleccionado
             )
         self.findCompatibleCourses.clicked.connect(
             self.buscar_cursos_compatible
             )
+
+        # Conexion Combo Box
+        self.semesterComboBox.currentTextChanged.connect(self.cambio_semestre)
 
         # Ajustes que no se lograron en QtDesigner
         self.agregar_assets()
@@ -49,15 +54,6 @@ class MiVentana(QMainWindow):
         Agrega el icono a la ventana
         '''
         self.setWindowIcon(QIcon(os.path.join(*pg.path_icon)))
-
-    def procesando(self, estado=True, funcion=""):
-        '''
-        Cambia el estado de la barra de estado
-        '''
-        if estado:
-            self.statusBar.showMessage("Procesando...")
-        else:
-            self.statusBar.showMessage("Actualizado")
 
     def ajustar_tablas(self):
         '''
@@ -128,12 +124,22 @@ class MiVentana(QMainWindow):
                     item_checkbox.setCheckState(Qt.Unchecked)
                     self.moduleTable.setItem(h, d, item_checkbox)
 
+    def limpiar_filtro(self):
+        self.acronymLineEdit.clear()
+        self.nrcLineEdit.clear()
+        self.nameLineEdit.clear()
+        self.teacherLineEdit.clear()
+        self.vacanciesSpinBox.setValue(0)
+        self.prerequisitesLineEdit.clear()
+        for r in range(self.moduleTable.rowCount()):
+            if r != 3:
+                for c in range(self.moduleTable.columnCount()):
+                    self.moduleTable.item(r, c).setCheckState(Qt.Unchecked)
+
     def manejar_aplicar_filtro(self):
         '''
         Obtiene la información de los filtros y la procesa
         '''
-        self.procesando()
-
         filtros = {
             'Semestre': self.semesterComboBox.currentText(),
             'Sigla': self.acronymLineEdit.text(),
@@ -241,15 +247,12 @@ class MiVentana(QMainWindow):
 
         header = self.resultsTableWidget.verticalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeToContents)
-        self.procesando(False)
 
     def agregar_curso(self, row):
         '''
         Busca la sigla y sección de la fila
         La envia al backend
         '''
-        self.procesando()
-
         self.signal_agregar_curso.emit({
             'Sigla': self.resultsTableWidget.item(row, 1).text(),
             'Seccion': self.resultsTableWidget.item(row, 2).text(),
@@ -272,14 +275,11 @@ class MiVentana(QMainWindow):
                     dict_curso['Seccion'],
                     dict_curso['Nombre']
                 ))
-        self.procesando(False)
 
     def eliminar_curso_seleccionado(self, event):
         '''
         Obtiene la información del curso a eliminar
         '''
-        self.procesando()
-
         datos, _ = event.text().strip().split('\t')
         _, sigla, seccion = datos.split(' ')
         self.signal_eliminar_curso.emit({
@@ -338,14 +338,22 @@ class MiVentana(QMainWindow):
 
         header = self.scheduleTable.verticalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeToContents)
-        self.procesando(False)
 
     def buscar_cursos_compatible(self):
         '''
         Envia la señal para obtener cursos compatibles
         '''
-        self.procesando()
         self.signal_buscar_cursos_compatibles.emit()
+
+    def cambio_semestre(self, semestre):
+        self.signal_cambio_semestre.emit(semestre)
+        self.limiar_todo()
+
+    def limiar_todo(self):
+        self.limpiar_horario()
+        self.limpiar_tabla_resultados()
+        self.limpiar_filtro()
+        self.myCoursesListWidget.clear()
 
 
 class BotonAgregar(QPushButton):

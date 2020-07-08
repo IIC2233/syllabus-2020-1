@@ -67,6 +67,25 @@ class Test:
         print(f"Errores: {sum(1 if r is None else 0 for r in self.resultados)}")
 
     def comparar(self, respuesta, output_esperado):
+        if isinstance(respuesta, dict) and isinstance(output_esperado, dict):
+            if not self.comparar(sorted(respuesta.keys()), sorted(output_esperado.keys())):
+                return False
+            return all(self.comparar(respuesta[k], output_esperado[k]) for k in respuesta)
+        elif isinstance(respuesta, list) and isinstance(output_esperado, list):
+            if len(respuesta) != len(output_esperado):
+                return False
+            # Quitamos None para ordenar sin problemas
+            respuesta = [e for e in respuesta if e is not None]
+            output_esperado = [e for e in output_esperado if e is not None]
+            # Comparamos largo nuevamente
+            if len(respuesta) != len(output_esperado):
+                return False
+            # En las listas ignoramos el orden
+            return self.comparar(tuple(sorted(respuesta)), tuple(sorted(output_esperado)))
+        elif isinstance(respuesta, tuple) and isinstance(output_esperado, tuple):
+            if len(respuesta) != len(output_esperado):
+                return False
+            return all(self.comparar(respuesta[i], output_esperado[i]) for i in range(len(respuesta)))
         return respuesta == output_esperado
 
 
@@ -80,31 +99,31 @@ if __name__ == "__main__":
     # Cada tupla son los argumentos que se le entregan a la función a testear
     argumentos = [
         (None,),  # Se espera que falle
-        ("CLAS;TES;LAB;TER;PRA;AYU;SUP;TAL;LIB",),  # (0) Sin modulos
-        ("SUP;AYU;CLAS#V:3;TES;TAL;LAB;PRA;LIB;TER",),  # (1) Un módulo, un día
-        ("PRA#J,V:2;TER;SUP;TES;AYU;CLAS;TAL;LIB;LAB",),  # (2) Un módulo, dos días
-        ("SUP;TES;AYU;CLAS;LIB;PRA;LAB#M,J:7;TAL;TER#L,M:2",),  # (2b) Un módulo, dos días (múltiples veces)
-        ("LAB;PRA;TER;TAL;TES#L,W,V:1;AYU;LIB;SUP;CLAS",),  # (3) Un módulo, tres dias
-        ("SUP;TAL;AYU#L:5,6;CLAS;TES;LIB;PRA;LAB;TER",),  # (4) Dos módulos, un dia
-        ("TES;LAB;TAL;TER;LIB;SUP;PRA;AYU;CLAS#V:5,6,7",),  # (5) Tres módulos, un dia
-        ("AYU;LIB#W,J:7,8;PRA;CLAS;LAB;TER;TES;SUP;TAL",),  # (6) Dos módulos, dos dias
-        ("SUP#M,J:3,4;TES;LAB;TER;LIB;AYU;PRA;CLAS#M,J:1,2;TAL",),  # (6b) Dos módulos, dos dias (múltiples veces)
-        ("PRA;TES;TAL#M,W,J:3,4,5;AYU;LIB;LAB;TER#M,W,J:3,4,5;SUP;CLAS",),  # (7) Tres módulos, Tres dias
+        ("CLAS;TES;LAB;TER;PRA;AYU;TAL",),  # (0) Sin modulos
+        ("AYU;CLAS#V:3;TES;TAL;LAB;PRA;TER",),  # (1) Un módulo, un día
+        ("PRA#J,V:2;TER;TES;AYU;CLAS;TAL;LAB",),  # (2) Un módulo, dos días
+        ("TES;AYU;CLAS;PRA;LAB#M,J:7;TAL;TER#L,M:2",),  # (2b) Un módulo, dos días (múltiples veces)
+        ("LAB;PRA;TER;TAL;TES#L,W,V:1;AYU;CLAS",),  # (3) Un módulo, tres dias
+        ("TAL;AYU#L:5,6;CLAS;TES;PRA;LAB;TER",),  # (4) Dos módulos, un dia
+        ("TES;LAB;TAL;TER;PRA;AYU;CLAS#V:5,6,7",),  # (5) Tres módulos, un dia
+        ("AYU#W,J:7,8;PRA;CLAS;LAB;TER;TES;TAL",),  # (6) Dos módulos, dos dias
+        ("TES#M,J:3,4;LAB;TER;AYU;PRA;CLAS#M,J:1,2;TAL",),  # (6b) Dos módulos, dos dias (múltiples veces)
+        ("PRA;TES;TAL#M,W,J:3,4,5;AYU;LAB;TER#M,W,J:3,4,5;CLAS",),  # (7) Tres módulos, Tres dias
     ]
     # Output esperado debe ser una lista de objetos
     # Cada objeto será comparado con el resultado obtenido para los argumentos correspondientes
     output_esperado = [
         {},
-        {"TES": [], "CLAS": [], "LAB": [], "TER": [], "PRA": [], "AYU": [], "SUP": [], "TAL": [], "LIB": []},
-        {"SUP": [], "AYU": [], "CLAS": [("V", 3)], "TES": [], "TAL": [], "LAB": [], "PRA": [], "LIB": [], "TER": []},
-        {"PRA": [("J", 2), ("V", 2)], "TER": [], "SUP": [], "TES": [], "AYU": [], "CLAS": [], "TAL": [], "LIB": [], "LAB": []},
-        {"SUP": [], "TES": [], "AYU": [], "CLAS": [], "LIB": [], "PRA": [], "LAB": [("M", 7), ("J", 7)], "TAL": [], "TER": [("L", 2), ("M", 2)]},
-        {"LAB": [], "PRA": [], "TER": [], "TAL": [], "TES": [("L", 1), ("W", 1), ("V", 1)], "AYU": [], "LIB": [], "SUP": [], "CLAS": []},
-        {"SUP": [], "TAL": [], "AYU": [("L", 5), ("L", 6)], "CLAS": [], "TES": [], "LIB": [], "PRA": [], "LAB": [], "TER": []},
-        {"TES": [], "LAB": [], "TAL": [], "TER": [], "LIB": [], "SUP": [], "PRA": [], "AYU": [], "CLAS": [("V", 5), ("V", 6), ("V", 7)]},
-        {"AYU": [], "LIB": [("W", 7), ("W", 8), ("J", 7), ("J", 8)], "PRA": [], "CLAS": [], "LAB": [], "TER": [], "TES": [], "SUP": [], "TAL": []},
-        {"SUP": [("M", 3), ("M", 4), ("J", 3), ("J", 4)], "TES": [], "LAB": [], "TER": [], "LIB": [], "AYU": [], "PRA": [], "CLAS": [("M", 1), ("M", 2), ("J", 1), ("J", 2)], "TAL": []},
-        {"PRA": [], "TES": [], "TAL": [("M", 3), ("M", 4), ("M", 5), ("W", 3), ("W", 4), ("W", 5), ("J", 3), ("J", 4), ("J", 5)], "AYU": [], "LIB": [], "LAB": [], "TER": [("M", 3), ("M", 4), ("M", 5), ("W", 3), ("W", 4), ("W", 5), ("J", 3), ("J", 4), ("J", 5)], "SUP": [], "CLAS": []},
+        {"TES": [], "CLAS": [], "LAB": [], "TER": [], "PRA": [], "AYU": [], "TAL": []},
+        {"AYU": [], "CLAS": [("V", 3)], "TES": [], "TAL": [], "LAB": [], "PRA": [], "TER": []},
+        {"PRA": [("J", 2), ("V", 2)], "TER": [], "TES": [], "AYU": [], "CLAS": [], "TAL": [], "LAB": []},
+        {"TES": [], "AYU": [], "CLAS": [], "PRA": [], "LAB": [("M", 7), ("J", 7)], "TAL": [], "TER": [("L", 2), ("M", 2)]},
+        {"LAB": [], "PRA": [], "TER": [], "TAL": [], "TES": [("L", 1), ("W", 1), ("V", 1)], "AYU": [], "CLAS": []},
+        {"TAL": [], "AYU": [("L", 5), ("L", 6)], "CLAS": [], "TES": [], "PRA": [], "LAB": [], "TER": []},
+        {"TES": [], "LAB": [], "TAL": [], "TER": [], "PRA": [], "AYU": [], "CLAS": [("V", 5), ("V", 6), ("V", 7)]},
+        {"AYU": [("W", 7), ("W", 8), ("J", 7), ("J", 8)], "PRA": [], "CLAS": [], "LAB": [], "TER": [], "TES": [], "TAL": []},
+        {"TES": [("M", 3), ("M", 4), ("J", 3), ("J", 4)], "LAB": [], "TER": [], "AYU": [], "PRA": [], "CLAS": [("M", 1), ("M", 2), ("J", 1), ("J", 2)], "TAL": []},
+        {"PRA": [], "TES": [], "TAL": [("M", 3), ("M", 4), ("M", 5), ("W", 3), ("W", 4), ("W", 5), ("J", 3), ("J", 4), ("J", 5)], "AYU": [], "LAB": [], "TER": [("M", 3), ("M", 4), ("M", 5), ("W", 3), ("W", 4), ("W", 5), ("J", 3), ("J", 4), ("J", 5)], "CLAS": []},
     ]
     # Se instancia el contenedor de test y se prueban los casos
     test_traducir_modulos = Test(argumentos, output_esperado, traducir_modulos)
@@ -129,7 +148,7 @@ if __name__ == "__main__":
             "IIC2233": {
                 "Nombre": "Programación Avanzada",
                 "Retiro": "SI",
-                "Aprobacion especial": "NO",
+                "Aprobacion Especial": "NO",
                 "Creditos": 10,
                 "Ingles": "NO",
                 "Sigla": "IIC2233",
@@ -138,7 +157,7 @@ if __name__ == "__main__":
                     "1": {
                         "Campus": "San Joaquín",
                         "Formato": "Presencial",
-                        "Modulos": {"AYU": [("M", 4)], "CLAS": [("J", 4), ("J", 5)], "LAB": [], "LIB": [], "PRA": [], "SUP": [], "TAL": [], "TER": [], "TES": []},
+                        "Modulos": {"AYU": [("M", 4)], "CLAS": [("J", 4), ("J", 5)], "LAB": [], "PRA": [], "TAL": [], "TER": [], "TES": []},
                         "NRC": "12431",
                         "Profesor": "Ruz Cristian",
                         "Seccion": "1",

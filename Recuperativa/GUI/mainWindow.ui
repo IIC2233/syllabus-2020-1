@@ -880,7 +880,6 @@ margin: 2px;</string>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <tabstops>
   <tabstop>semesterComboBox</tabstop>
