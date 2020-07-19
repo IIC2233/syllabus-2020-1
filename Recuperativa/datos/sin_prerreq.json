@@ -1,0 +1,24 @@
+{
+  "IIC0020": {
+    "Prerrequisitos": "",
+    "Nombre": "Investigacion o Proyecto",
+    "Retiro": "NO",
+    "Aprobacion Especial": "SI",
+    "Creditos": 20,
+    "Ingles": "NO",
+    "Sigla": "IIC0020",
+    "Secciones": {
+      "1": {
+        "Campus": "San Joaquín",
+        "Formato": "Presencial",
+        "Modulos": "AYU;CLAS#J:8;LAB;PRA;TAL;TER;TES",
+        "NRC": "21114",
+        "Profesor": "Dirección Docente",
+        "Seccion": "1",
+        "Semestre": "2019-1",
+        "Vacantes disponibles": 44,
+        "Vacantes totales": 50
+      }
+    }
+  }
+}
